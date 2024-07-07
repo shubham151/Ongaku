@@ -3,22 +3,24 @@ import os
 from pinecone import Pinecone
 
 load_dotenv('../.env')
-
-# Initialize Pinecone with your API key
+print(os.getenv('PINE_KEY'))
 pc = Pinecone(api_key=os.getenv('PINE_KEY'))
 
-# Define index name
-index_name = 'musiceq'
 
-# Connect to the index
-index = pc.Index(index_name)
+def pinecone_query(vector):
+    # Initialize Pinecone with your API key
+    
+    # Define index name
+    index_name = 'musiceq'
 
-test = index.query(
-    vector=[0.49,0.15,0.13,0.7,0.28,0.51,0.8,0.27,0.52],
-    top_k=3,
-)
+    # Connect to the index
+    index = pc.Index(index_name)
 
-print(test)
+    results = index.query(
+        vector=vector,
+        top_k=5,
+    )
 
+    return results
 
-
+pinecone_query([0.2,0.4,0.6,0.9,0.2,0.4,0.6,0.9,100])
