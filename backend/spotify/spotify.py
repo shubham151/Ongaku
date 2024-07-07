@@ -3,7 +3,7 @@ import requests
 from dotenv import load_dotenv
 import os
 
-load_dotenv('.env')
+load_dotenv('../.env')
 
 def get_access_token(client_id, client_secret):
     # Encode client ID and client secret

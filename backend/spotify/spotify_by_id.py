@@ -5,7 +5,7 @@ import os
 import json
 
 # Load environment variables from a .env file
-load_dotenv('.env')
+load_dotenv('../.env')
 
 def get_access_token(client_id, client_secret):
     # Encode client ID and client secret
