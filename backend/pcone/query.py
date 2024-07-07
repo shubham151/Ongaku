@@ -2,14 +2,14 @@ from dotenv import load_dotenv
 import os
 from pinecone import Pinecone
 
-load_dotenv('../.env')
+load_dotenv('.env')
 print(os.getenv('PINE_KEY'))
 pc = Pinecone(api_key=os.getenv('PINE_KEY'))
 
 
 def pinecone_query(vector):
     # Initialize Pinecone with your API key
-    
+    print("entry") 
     # Define index name
     index_name = 'musiceq'
 
@@ -23,4 +23,3 @@ def pinecone_query(vector):
 
     return results
 
-pinecone_query([0.2,0.4,0.6,0.9,0.2,0.4,0.6,0.9,100])
