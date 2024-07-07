@@ -1,4 +1,115 @@
-#root {
+.root {
+    /* background: rgb(131,58,180); */
+  /* background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,0.6181066176470589) 50%, rgba(252,176,69,1) 100%); */
+  background-color: #D9AFD9;
+  background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);
+  display: flex;
+  flex-direction: column;
+  height: 100vh; 
+  width: 100vw;  
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-card {
+  background-color: #FFFFFF;
+  border-radius: 32px;
+  height:300px;
+  width:600px;
+  display: flex;
+  padding:40px;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; */
+  box-shadow: #A2D2E0 0px 10px 36px 0px, #D7B0D8 0px 0px 0px 1px;
+  align-items: center;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 32px;
+  width: 100%;    
+  padding: 30px;
+  border:3px dashed #DFE6E9;
+  /* for gradient border */
+  /* background: linear-gradient(white, white) padding-box,
+  linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%) border-box;
+  border: 2px dotted transparent; */
+
+
+}
+h1{
+  font-size: 50px;
+  font-family: "Wittgenstein", serif;
+  /* font-family: palatino, serif; */
+  /* font-family: monaco, monospace; */
+  font-size: 60px;
+  color: #FFFFFF;
+  /* text-shadow: 5px 5px #558abb; */
+  text-shadow: #D7B0D8 1px 0 10px;
+
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  /* font-family: 'Tahoma', monospace; */
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+}
+
+.gif {
+  max-width: 200px;
+  max-height:200px;
+}
+h2{
+  font-family: "Poppins", sans-serif;
+  text-shadow: gray 1px 0 2px;
+  font-size: 30px;
+}
+/* span{
+  font-family: "Poppins", sans-serif;
+  width:100%;
+
+  margin: 40px;
+} */
+
+.table{
+  display: flex;
+  flex-direction: column;
+
+  span{
+    margin-bottom: 8px;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    font-weight: 200;
+    width:auto;
+    padding:3px;
+    display:flex;
+    justify-content:center;
+    border: 1px dotted #D7B0D8;
+    border-radius: 16px;
+    background-color: #CAAFAC;
+    color:#FFFFFF;
+    box-shadow: #e0e0e0 0px 10px 36px 0px, #e0e0e0 0px 0px 0px 1px;
+  }
+}
+img{
+  margin:15px;
+  width: 250px; 
+  max-height: 275px;
+}
+
+
+/* #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
@@ -39,4 +150,4 @@
 
 .read-the-docs {
   color: #888;
-}
+} */

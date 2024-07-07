@@ -1,33 +1,41 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import axios from 'axios'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFilm } from '@fortawesome/free-solid-svg-icons'
+import Lottie from 'lottie-react'
+import animationData from './assets/video-film.json'
+// import FirstPage from './firstPage'
+
 
 function App() {
   const [count, setCount] = useState(0)
-
+  const songs = ['Count me out - Kendrick Lamar', 'So far away - Avenged Sevenfold', 'Won\'t go home without you - Maroon 5', 'Toxicity - System of a down', 'Seven Nation Army - The white stripes']
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <div className='root'>
+      <h1>Ongaku</h1>
+        <div className='upload-card'>
+          {/* <FirstPage/> */}
+          <div className='card'>
+          
+          <Lottie animationData={animationData} className='gif'/>
+          <label for="file-upload" class="custom-file-upload">
+          <FontAwesomeIcon icon={faFilm} />  
+          {' Upload Video'}
+          </label>
+          <input id="file-upload" type='file'></input>
+          {/* <button>Upload</button>*/}
+          </div> 
+          {/* <div className='table'>
+            <h2>Try one of these songs!</h2>
+              {songs.map((item) => (
+                <span>{item}</span>
+              ))}
+          </div>
+         <img src='https://cdn-0.studybreaks.com/wp-content/uploads/2022/11/IMG_2547.png?ezimgfmt=rs:387x258/rscb8/ngcb8/notWebP'/> */}
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
