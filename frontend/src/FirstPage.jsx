@@ -1,8 +1,11 @@
 import './App.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFilm } from '@fortawesome/free-solid-svg-icons'
+import Lottie from 'lottie-react'
+import animationData from './assets/video-film.json'
 
 function FirstPage(){
     return(
-        <>
         <div className='card'>
           
           <Lottie animationData={animationData} className='gif'/>
@@ -12,8 +15,7 @@ function FirstPage(){
           </label>
           <input id="file-upload" type='file'></input>
           {/* <button>Upload</button> */}
-          </div>
-        </>
+        </div>
     )
 }
 export default FirstPage
