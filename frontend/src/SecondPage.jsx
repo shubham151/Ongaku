@@ -16,7 +16,7 @@ function SecondPage({ songs }){
                 // </div>
                   <div key={index}>
                     <img src={item.image} alt={`Slide ${index}`} />
-                    <a className="legend">{item.songName + " - " + item.artist}</a>
+                    <a className="legend" href={item.songUrl}>{item.songName + " - " + item.artist}</a>
                   </div>
                 ))}
               </Carousel>
