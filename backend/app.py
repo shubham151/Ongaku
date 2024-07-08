@@ -1,48 +1,47 @@
 import os
-import base64
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from pcone.query import pinecone_query
 from videoToVector.vectorizer import vector_query
 from spotify.spotify_by_id import get_tracks_info
-from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
 
 @app.route('/', methods=['POST'])
 def vector_generator():
-    data = request.json
-    print(data.get('video'))
-    encoded_video = data.get('video')
-    decoded_video = base64.base64decode(encoded_video)
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
 
-    file_path = '.\\data\\video.mp4'
+    file = request.files['file']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
 
-    with open(file_path, 'wb') as video_file:
-        video_file.write(decoded_video)
-    
-    query = vector_query(file_path)
-    
-    results = pinecone_query(query)
+    file_path = os.path.join('./data', 'video.mp4')
+    file.save(file_path)
 
-    matches = [match.id for match in results.matches]
+    try:
+        query = vector_query(file_path)
+        results = pinecone_query(query)
+        matches = [match.id for match in results.matches]
 
-    raw_response = get_tracks_info(matches)
+        raw_response = get_tracks_info(matches)
 
-    response = []
+        response = []
+        for res in raw_response:
+            track = {
+                "artist": res['album']['artists'][0]['name'],
+                "image": res['album']['images'][0]['url'],
+                "songUrl": "https://open.spotify.com/track/" + res['href'].split("/")[-1],
+                "songName": res['name']
+            }
+            response.append(track)
 
-    for res in raw_response:
-        track = {}
-        track["artist"] = res['album']['artists'][0]['name']
-        track["image"] = res['album']['images'][0]['url']
-        track["songUrl"] = "https://open.spotify.com/track/" + res['href'].split("/")[-1]
-        track["songName"] = res['name']
-        response.append(track)
+        return jsonify(response)
 
-    return jsonify(response)
-
-    if os.path.exists(file_path):
-        os.remove(file_path)
+    finally:
+        if os.path.exists(file_path):
+            os.remove(file_path)
 
 if __name__ == '__main__':
     app.run(debug=True)
