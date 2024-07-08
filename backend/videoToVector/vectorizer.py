@@ -1,8 +1,10 @@
 import pandas as pd
 from .embeddings_compression import final_vector
+import os
 
 def vector_query(path):
-    df = pd.read_csv("..\\dataset\\statistics.csv")
+    print(os.getcwd())
+    df = pd.read_csv("../dataset/statistics.csv")
     vector = [a.item() for a in final_vector(path)]
     target_means, target_stds = [], []
     

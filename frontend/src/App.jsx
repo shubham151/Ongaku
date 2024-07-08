@@ -36,36 +36,37 @@ function App() {
         }
       })
       .then(res => {
+
         // setSongs(['Count me out - Kendrick Lamar', 'So far away - Avenged Sevenfold', 'Won\'t go home without you - Maroon 5', 'Toxicity - System of a down', 'Seven Nation Army - The white stripes']);
-       const v = [{ artist: 'Charli xcx',
-          image: 'https://i.scdn.co/image/ab67616d0000b27388e3822cccfb8f2832c70c2e',
-          songUrl:'https://api.spotify.com/v1/tracks/4w2GLmK2wnioVnb5CPQeex',
-          songName: '360',
-        },
-        { artist:'Tinashe',
-          image:'https://i.scdn.co/image/ab67616d0000b27399068b5c52ec35ec2db977a7',
-          songUrl:'https://api.spotify.com/v1/tracks/6NjWCIYu1W8xa3HIvcIhd4',
-          songName:'Nasty',
-        },
-        { artist:'Michael Marcagi',
-          image:'https://i.scdn.co/image/ab67616d0000b27351ef67c49732e45cd2b26fbe',
-          songUrl:'https://api.spotify.com/v1/tracks/3Pbp7cUCx4d3OAkZSCoNvn',
-          songName:'Scared To Start',
-          },
-        { artist:'Zach Bryan',
-          image:'https://i.scdn.co/image/ab67616d0000b273647ad18a07e9e939e399e5a1',
-          songUrl:'https://api.spotify.com/v1/tracks/5iJKGpnFfvbjZJeAtwXfCj',
-          songName:'28',
-        },
-        { artist:'Kendrick Lamar',
-          image:'https://i.scdn.co/image/ab67616d0000b2731ea0c62b2339cbf493a999ad',
-          songUrl:'https://api.spotify.com/v1/tracks/6AI3ezQ4o3HUoP6Dhudph3',
-          songName:'Not Like Us',
-        }]
-        setSongs(v);
+      //  const v = [{ artist: 'Charli xcx',
+      //     image: 'https://i.scdn.co/image/ab67616d0000b27388e3822cccfb8f2832c70c2e',
+      //     songUrl:'https://api.spotify.com/v1/tracks/4w2GLmK2wnioVnb5CPQeex',
+      //     songName: '360',
+      //   },
+      //   { artist:'Tinashe',
+      //     image:'https://i.scdn.co/image/ab67616d0000b27399068b5c52ec35ec2db977a7',
+      //     songUrl:'https://api.spotify.com/v1/tracks/6NjWCIYu1W8xa3HIvcIhd4',
+      //     songName:'Nasty',
+      //   },
+      //   { artist:'Michael Marcagi',
+      //     image:'https://i.scdn.co/image/ab67616d0000b27351ef67c49732e45cd2b26fbe',
+      //     songUrl:'https://api.spotify.com/v1/tracks/3Pbp7cUCx4d3OAkZSCoNvn',
+      //     songName:'Scared To Start',
+      //     },
+      //   { artist:'Zach Bryan',
+      //     image:'https://i.scdn.co/image/ab67616d0000b273647ad18a07e9e939e399e5a1',
+      //     songUrl:'https://api.spotify.com/v1/tracks/5iJKGpnFfvbjZJeAtwXfCj',
+      //     songName:'28',
+      //   },
+      //   { artist:'Kendrick Lamar',
+      //     image:'https://i.scdn.co/image/ab67616d0000b2731ea0c62b2339cbf493a999ad',
+      //     songUrl:'https://api.spotify.com/v1/tracks/6AI3ezQ4o3HUoP6Dhudph3',
+      //     songName:'Not Like Us',
+      //   }]
+        setSongs(res.data);
 
         setUploadStatus('uploaded')
-        console.log(res.data)
+        // console.log(res.data)
         // console.log(songs)
         })
       .catch(err => {

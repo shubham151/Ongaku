@@ -63,7 +63,7 @@ class Autoencoder(nn.Module):
     
 def final_vector(file):
     model = Autoencoder()
-    model.load_state_dict(torch.load("models\\autoencoder_model_retrained.pth", map_location=torch.device('cpu')))
+    model.load_state_dict(torch.load("models/autoencoder_model_retrained.pth", map_location=torch.device('cpu')))
     model.eval()
 
     higher_dimensional_embedding = encoder(file)
