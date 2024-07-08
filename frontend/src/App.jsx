@@ -8,21 +8,20 @@ import animationData from './assets/video-film.json'
 import FirstPage from './FirstPage'
 import SecondPage from './SecondPage'
 import LoadingPage from './LoadingPage'
+import ErrorPage from './ErrorPage'
 
 function App() {
   const [uploadStatus, setUploadStatus] = useState('not uploaded')
   const [file, setFile] = useState(null)
   const [songs, setSongs] = useState([])
   const handleFileUpload = (upFile) => {
-    console.log(upFile ,'up')
     setFile(upFile);
-    console.log(file);  
   }
   const handleFileChange = async() => {
-    console.log(file)
     if(!file){
       console.log(file)
       console.log('No file chosen')
+      setUploadStatus('error');
       return;
     } else {
       const fd = new FormData();
@@ -42,7 +41,10 @@ function App() {
         console.log(res.data)
         // console.log(songs)
         })
-      .catch(err => console.error(err));
+      .catch(err => {
+        console.error(err)
+        setUploadStatus('error')
+      });
     }
   }
 
@@ -54,6 +56,7 @@ function App() {
           {uploadStatus === 'not uploaded' && <FirstPage setUStat = { handleFileChange } fileChange={ handleFileUpload } />}
           {uploadStatus === 'uploading' && <LoadingPage/>}
           {uploadStatus === 'uploaded' && <SecondPage songs = {songs}/>}
+          {uploadStatus === 'error' && <ErrorPage/>}
         </div>
       </div>
     </>
