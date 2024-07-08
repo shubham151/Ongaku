@@ -1,8 +1,8 @@
 import './App.css'
 
 
-function SecondPage(){
-    const songs = ['Count me out - Kendrick Lamar', 'So far away - Avenged Sevenfold', 'Won\'t go home without you - Maroon 5', 'Toxicity - System of a down', 'Seven Nation Army - The white stripes']
+function SecondPage({ songs }){
+    console.log('Songs prop:', songs);
     return(
         <><div className='table'>
             <h2>Try one of these songs!</h2>
