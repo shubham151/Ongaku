@@ -89,6 +89,20 @@ input[type="file"] {
     font-size: 25px;
   }
 }
+.error{
+  max-width: 300px;
+  max-height:200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 160px;
+
+  span{
+    font-family: "Poppins", sans-serif;
+    font-size: 25px;
+  }
+}
 
 h2{
   font-family: "Poppins", sans-serif;
