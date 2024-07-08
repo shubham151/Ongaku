@@ -1,5 +1,5 @@
 import pandas as pd
-from embeddings_compression import final_vector
+from .embeddings_compression import final_vector
 
 def vector_query(path):
     df = pd.read_csv("..\\dataset\\statistics.csv")

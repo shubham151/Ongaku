@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from video_encoder import encoder
+from .video_encoder import encoder
 
 class Autoencoder(nn.Module):
     def __init__(self):

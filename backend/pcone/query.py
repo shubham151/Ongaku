@@ -3,7 +3,7 @@ import os
 from pinecone import Pinecone
 
 load_dotenv('.env')
-print(os.getenv('PINE_KEY'))
+
 pc = Pinecone(api_key=os.getenv('PINE_KEY'))
 
 

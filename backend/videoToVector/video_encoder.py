@@ -1,9 +1,9 @@
-import io, os
+import io
 import numpy as np
 from PIL import Image
 from moviepy.editor import VideoFileClip
-from image_caption import image_caption_genrator
-from bert_tokenizer import embeddings_generator
+from .image_caption import image_caption_genrator
+from .bert_tokenizer import embeddings_generator
 
 def image_to_base64(pil_image):
         byte_arr = io.BytesIO()

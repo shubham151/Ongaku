@@ -7,6 +7,9 @@ import json
 # Load environment variables from a .env file
 load_dotenv('../.env')
 
+client_id = os.getenv('CLIENT_ID')
+client_secret = os.getenv('CLIENT_KEY')
+
 def get_access_token(client_id, client_secret):
     # Encode client ID and client secret
     auth_header = base64.b64encode(f"{client_id}:{client_secret}".encode()).decode()
@@ -27,7 +30,10 @@ def get_access_token(client_id, client_secret):
     else:
         raise Exception(f"Failed to get access token: {response.status_code}, {response.text}")
 
-def get_tracks_info(access_token, track_ids):
+# Get access token
+access_token = get_access_token(client_id, client_secret)
+
+def get_tracks_info(track_ids):
     url = "https://api.spotify.com/v1/tracks"
     params = {
         "ids": ",".join(track_ids)
@@ -46,37 +52,32 @@ def get_tracks_info(access_token, track_ids):
     else:
         raise Exception(f"Error: {response.status_code}, {response.text}")
 
-# Replace these with your actual Client ID and Client Secret
-client_id = os.getenv('CLIENT_ID')
-client_secret = os.getenv('CLIENT_KEY')
+# # Replace these with your actual Client ID and Client Secret
 
-# Get access token
-access_token = get_access_token(client_id, client_secret)
+# # List of track IDs (replace with your actual track IDs)
+# track_ids = [
+#     '3n3Ppam7vgaVa1iaRUc9Lp',
+#     '0eGsygTp906u18L0Oimnem',
+#     '1dGr1c8CrMLDpV6mPbImSI',
+#     # Add more track IDs as needed
+# ]
 
-# List of track IDs (replace with your actual track IDs)
-track_ids = [
-    '3n3Ppam7vgaVa1iaRUc9Lp',
-    '0eGsygTp906u18L0Oimnem',
-    '1dGr1c8CrMLDpV6mPbImSI',
-    # Add more track IDs as needed
-]
+# # Get track information
+# tracks_info = get_tracks_info(access_token, track_ids)
 
-# Get track information
-tracks_info = get_tracks_info(access_token, track_ids)
+# # Print track details
+# for track in tracks_info:
+#     print(f"ID: {track['id']}")
+#     print(f"Name: {track['name']}")
+#     print(f"Artists: {', '.join(artist['name'] for artist in track['artists'])}")
+#     print(f"Album: {track['album']['name']}")
+#     print(f"Release Date: {track['album']['release_date']}")
+#     print(f"Popularity: {track['popularity']}")
+#     print('-----------------------------')
 
-# Print track details
-for track in tracks_info:
-    print(f"ID: {track['id']}")
-    print(f"Name: {track['name']}")
-    print(f"Artists: {', '.join(artist['name'] for artist in track['artists'])}")
-    print(f"Album: {track['album']['name']}")
-    print(f"Release Date: {track['album']['release_date']}")
-    print(f"Popularity: {track['popularity']}")
-    print('-----------------------------')
+# # Save the track details to a JSON file
+# with open('track_details.json', 'w') as f:
+#     json.dump(tracks_info, f, indent=4)
 
-# Save the track details to a JSON file
-with open('track_details.json', 'w') as f:
-    json.dump(tracks_info, f, indent=4)
-
-print("Track details saved to 'track_details.json'.")
+# print("Track details saved to 'track_details.json'.")
 
