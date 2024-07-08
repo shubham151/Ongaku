@@ -3,7 +3,7 @@ import requests
 from dotenv import load_dotenv
 import os
 
-load_dotenv('.env')
+load_dotenv('../.env')
 
 def get_access_token(client_id, client_secret):
     # Encode client ID and client secret
@@ -44,9 +44,13 @@ def get_recommendations(access_token, target_danceability, target_energy, target
         params=parameters
     )
 
+    i=0
     if response.status_code == 200:
         recommendations = response.json()
         for track in recommendations["tracks"]:
+            if i == 0:
+                print(track)
+            i+=1
             print(f"Track: {track['name']} by {track['artists'][0]['name']}")
     else:
         print(f"Error: {response.status_code}, {response.text}")
