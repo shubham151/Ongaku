@@ -7,21 +7,51 @@ import Lottie from 'lottie-react'
 import animationData from './assets/video-film.json'
 import FirstPage from './FirstPage'
 import SecondPage from './SecondPage'
+import LoadingPage from './LoadingPage'
 
 function App() {
-  const [count, setCount] = useState(0)
   const [uploadStatus, setUploadStatus] = useState('not uploaded')
-  const handleChange = () => {
-
+  const [file, setFile] = useState(null)
+  const handleFileUpload = (upFile) => {
+    console.log(upFile ,'up')
+    setFile(upFile);
+    console.log(file);  
   }
-  const songs = ['Count me out - Kendrick Lamar', 'So far away - Avenged Sevenfold', 'Won\'t go home without you - Maroon 5', 'Toxicity - System of a down', 'Seven Nation Army - The white stripes']
+  const handleFileChange = async() => {
+    console.log(file)
+    if(!file){
+      console.log(file)
+      console.log('No file chosen')
+      return;
+    } else {
+      const fd = new FormData();
+      fd.append('file', file);
+
+      setUploadStatus('uploading')
+      
+      axios.post('http://httpbin.org/post', fd, {
+        onUploadProgress: (progEvent) => { console.log(progEvent.progress*100) },
+        headers: {
+          'Custom-Header': 'value',
+        }
+      })
+      .then(res => {
+        setUploadStatus('uploaded')
+        console.log(res.data)
+        })
+      .catch(err => console.error(err));
+    }
+  }
+  const handleChange = () => {
+    
+  }
   return (
     <>
       <div className='root'>
       <h1>Ongaku</h1>
         <div className='upload-card'>
-          {uploadStatus === 'not uploaded' && <FirstPage/>}
-          {/* Loading screeen for uploading */}
+          {uploadStatus === 'not uploaded' && <FirstPage setUStat = { handleFileChange } fileChange={ handleFileUpload } />}
+          {uploadStatus === 'uploading' && <LoadingPage/>}
           {uploadStatus === 'uploaded' && <SecondPage/>}
         </div>
       </div>
