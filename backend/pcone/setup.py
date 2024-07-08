@@ -24,15 +24,15 @@ if index_name not in pc.list_indexes().names():
     )
 
 # Read data from CSV, skipping the header row
-csv_file_path = './tiktok_dataset.csv'
+csv_file_path = './dataset_id.csv'
 df = pd.read_csv(csv_file_path, skiprows=1)  # Skip the first row (header)
 
 # Function to generate data in Pinecone format
 def generate_data(df):
     data = []
     for idx, row in df.iterrows():
-        _id = f"id_{idx}"
-        vector_values = [float(val) for val in row.tolist()]  # Convert each value to float
+        _id = str(row[0])
+        vector_values = [float(val) for val in row[1:].tolist()]  # Convert each value to float
         vector = {
             'id': _id,
             'values': vector_values
