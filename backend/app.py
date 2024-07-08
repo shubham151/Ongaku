@@ -4,13 +4,15 @@ from flask import Flask, jsonify, request
 from pcone.query import pinecone_query
 from videoToVector.vectorizer import vector_query
 from spotify.spotify_by_id import get_tracks_info
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/', methods=['POST'])
 def vector_generator():
     data = request.json
-    print(data)
+    print(data.get('video'))
     encoded_video = data.get('video')
     decoded_video = base64.base64decode(encoded_video)
 
@@ -31,16 +33,16 @@ def vector_generator():
 
     for res in raw_response:
         track = {}
-        track["Artist"] = res['album']['artists'][0]['name']
-        track["Thumbnail"] = res['album']['images'][0]['url']
-        track["URL"] = res['href']
-        track["Name"] = res['name']
+        track["artist"] = res['album']['artists'][0]['name']
+        track["image"] = res['album']['images'][0]['url']
+        track["songUrl"] = "https://open.spotify.com/track/" + res['href'].split("/")[-1]
+        track["songName"] = res['name']
         response.append(track)
 
     return jsonify(response)
 
-    # if os.path.exists(file_path):
-    #     os.remove(file_path)
+    if os.path.exists(file_path):
+        os.remove(file_path)
 
 if __name__ == '__main__':
     app.run(debug=True)
