@@ -6,7 +6,7 @@ function LoadingPage() {
     return(
         <div className='loading-box'>
         <Lottie animationData={animationData} className='gif-load' />
-        <span>Loading Please Wait!</span>
+        <span>Uploading Please Wait!</span>
         </div>
     )
 }
